@@ -8,6 +8,25 @@
 //  Fecha: 12/Marzo/2018                                                  ////
 //////////////////////////////////////////////////////////////////////////////
 
+/* 
+
+	TECLAS
+		
+		i/I: Cerrar Dedos
+		o/O: Abrir Dedos
+		y/Y: Bajar Codo
+		u/U: Subir Codo
+		k/K: Adelante Muñeca
+		l/L: Atras Muñeca
+		j/J: Subir Hombro
+		h/H: Bajar Hombro
+		s/S: Alejar
+		w/W: Acercar
+		a/A: Moverse a la Izquierda
+		d/D: Moverse a la Derecha
+
+*/
+
 #include "Main.h"
 
 float transZ = -5.0f;
@@ -19,7 +38,8 @@ int screenH = 0.0;
 
 float anguloHombro = 0.0f;
 float anguloCodo = 0.0f;
-float anguloAnular = 0.0f;
+float anguloMuneca = 0.0f;
+float anguloDedos = 0.0f;
 
 
 GLfloat Position[]= { 0.0f, 3.0f, 0.0f, 1.0f };			// Light Position
@@ -113,7 +133,7 @@ void display ( void )   // Creamos la funcion donde se dibuja
 	//glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	glTranslatef(transX, 0.0f, transZ);
+	glTranslatef(transX -5.5, 0.0f, transZ -3.0);
 	glRotatef(angleY, 0.0, 1.0, 0.0);
 	glRotatef(angleX, 1.0, 0.0, 0.0);
 	
@@ -135,39 +155,43 @@ void display ( void )   // Creamos la funcion donde se dibuja
 
 	glPushMatrix(); // Hombro
 		glColor3f(1.0f, 0.0f, 0.0f);
-		glScalef(1.0f, 2.0f, 2.0f);
-		prisma();
+			glScalef(1.0f, 2.0f, 0.5f);
+			prisma();
 	glPopMatrix();
 
 	glPushMatrix(); // Bicep
 		glColor3f(0.0f, 1.0f, 0.0f);
 			glTranslatef(2.0f, 0.0f, 0.0f);
-			glScalef(3.0f, 2.0f, 2.0f);
+			glScalef(3.0f, 2.0f, 0.5f);
 			prisma();
 	glPopMatrix();
 
-	glTranslatef(3.5f, 0.0f, 0.0f); // Muevo mi pivote a donde quiero
+	glTranslatef(3.75f, 0.0f, 0.0f); // Muevo mi pivote a donde quiero
 	glRotatef(anguloCodo, 0.0f, 0.0f, 1.0f); // Rotacion Codo
-	glTranslatef(-3.5f, 0.0f, 0.0f); // Regreso el pivote para que no afecte las demas transformaciones
+	glTranslatef(-3.75f, 0.0f, 0.0f); // Regreso el pivote para que no afecte las demas transformaciones
 
 	glPushMatrix(); // Codo
 		glColor3f(0.0f, 0.0f, 1.0f);
 			glTranslatef(3.75f, 0.0f, 0.0f);
-			glScalef(0.5f, 2.0f, 2.0f);
+			glScalef(0.5f, 2.0f, 0.5f);
 			prisma();
 	glPopMatrix();
 
 	glPushMatrix(); // Antebrazo
 		glColor3f(1.0f, 1.0f, 0.0f);
 			glTranslatef(6.0f, 0.0f, 0.0f);
-			glScalef(4.0f, 2.0f, 2.0f);
+			glScalef(4.0f, 2.0f, 0.5f);
 			prisma();
 	glPopMatrix();
+
+	glTranslatef(8.25f, 0.0f, 0.0f);
+	glRotatef(anguloMuneca, 0.0f, 1.0f, 0.0f); // Rotacion Muñeca
+	glTranslatef(-8.25f, 0.0f, 0.0f);
 
 	glPushMatrix(); // Muñeca
 		glColor3f(1.0f, 0.0f, 1.0f);
 			glTranslatef(8.25f, 0.0f, 0.0f);
-			glScalef(0.5f, 2.0f, 2.0f);
+			glScalef(0.5f, 2.0f, 0.5f);
 			prisma();
 	glPopMatrix();
 
@@ -175,114 +199,185 @@ void display ( void )   // Creamos la funcion donde se dibuja
 
 	glPushMatrix(); // Palma
 		glColor3f(0.0f, 1.0f, 1.0f);
-			glScalef(2.0f, 2.0f, 2.0f);
+			glScalef(2.0f, 2.0f, 0.5f);
 			prisma();
 	glPopMatrix();
 
-	glPushMatrix(); // Pulgar 01
-		glColor3f(1.0f, 0.0f, 0.0f);
-			glTranslatef(0.5f, 1.25f, 0.0f);
-			glScalef(0.4f, 0.5f, 0.5f);
-			prisma();
-	glPopMatrix();
+	glPushMatrix(); // Rotaciones Dedo Pulgar
 
-	glPushMatrix(); // Pulgar 02
-		glColor3f(0.0f, 1.0f, 0.0f);
-			glTranslatef(0.5f, 1.75f, 0.0f);
-			glScalef(0.4f, 0.5f, 0.5f);
-			prisma();
-	glPopMatrix();
+		glTranslatef(-0.5f, 1.0f, 0.0f);
+		glRotatef(anguloDedos, 1.0, 0.0, 0.0); // Rotacion Pulgar 01
+		glTranslatef(0.5f, -1.0f, 0.0f);
 
-	glPushMatrix(); // Indice 01
-		glColor3f(1.0f, 0.0f, 0.0f);
-			glTranslatef(1.25f, 0.75f, 0.0f);
-			glScalef(0.5f, 0.4f, 0.5f);
-			prisma();
-	glPopMatrix();
+		glPushMatrix(); // Pulgar 01
+			glColor3f(1.0f, 0.0f, 0.0f);
+				glTranslatef(-0.5f, 1.25f, 0.0f);
+				glScalef(0.4f, 0.5f, 0.5f);
+				prisma();
+		glPopMatrix();
 
-	glPushMatrix(); // Indice 02
-		glColor3f(0.0f, 1.0f, 0.0f);
-			glTranslatef(1.75f, 0.75f, 0.0f);
-			glScalef(0.5f, 0.4f, 0.5f);
-			prisma();
-	glPopMatrix();
+		glTranslatef(-0.5f, 1.5f, 0.0f);
+		glRotatef(anguloDedos - anguloDedos*0.5, 1.0, 0.0, 0.0); // Rotacion Pulgar 02
+		glTranslatef(0.5f, -1.5f, 0.0f);
 
-	glPushMatrix(); // Indice 03
-		glColor3f(0.0f, 0.0f, 1.0f);
-			glTranslatef(2.25f, 0.75f, 0.0f);
-			glScalef(0.5f, 0.4f, 0.5f);
-			prisma();
-	glPopMatrix();
+		glPushMatrix(); // Pulgar 02
+			glColor3f(0.0f, 1.0f, 0.0f);
+				glTranslatef(-0.5f, 1.75f, 0.0f);
+				glScalef(0.4f, 0.5f, 0.5f);
+				prisma();
+		glPopMatrix();
 
-	glPushMatrix(); // Medio 01
-		glColor3f(1.0f, 0.0f, 0.0f);
-			glTranslatef(1.25f, 0.25f, 0.0f);
-			glScalef(0.5f, 0.4f, 0.5f);
-			prisma();
-	glPopMatrix();
+	glPopMatrix(); // Fin Rotaciones Dedo Pulgar
 
-	glPushMatrix(); // Medio 02
-		glColor3f(0.0f, 1.0f, 0.0f);
-			glTranslatef(1.75f, 0.25f, 0.0f);
-			glScalef(0.5f, 0.4f, 0.5f);
-			prisma();
-	glPopMatrix();
+	glPushMatrix(); // Rotaciones Dedo Indice
 
-	glPushMatrix(); // Medio 03
-		glColor3f(0.0f, 0.0f, 1.0f);
-			glTranslatef(2.25f, 0.25f, 0.0f);
-			glScalef(0.5f, 0.4f, 0.5f);
-			prisma();
-	glPopMatrix();
+		glTranslatef(1.0f, 1.25f, 0.0f);
+		glRotatef(anguloDedos, 0.0, -1.0, 0.0); // Rotacion Indice 01
+		glTranslatef(-1.0f, -1.25f, 0.0f);
 
-	glPushMatrix(); // Rotacion Anular
-		glRotatef(anguloAnular, 0.0f, 1.0f, 0.0f);
+		glPushMatrix(); // Indice 01
+			glColor3f(1.0f, 0.0f, 0.0f);
+				glTranslatef(1.25f, 0.75f, 0.0f);
+				glScalef(0.5f, 0.4f, 0.5f);
+				prisma();
+		glPopMatrix();
+
+		glTranslatef(1.5f, 1.25f, 0.0f);
+		glRotatef(anguloDedos - anguloDedos*0.5, 0.0, -1.0, 0.0); // Rotacion Indice 02
+		glTranslatef(-1.5f, -1.25f, 0.0f);
+
+		glPushMatrix(); // Indice 02
+			glColor3f(0.0f, 1.0f, 0.0f);
+				glTranslatef(1.75f, 0.75f, 0.0f);
+				glScalef(0.5f, 0.4f, 0.5f);
+				prisma();
+		glPopMatrix();
+
+		glTranslatef(2.0f, 1.25f, 0.0f);
+		glRotatef(anguloDedos - anguloDedos*0.75, 0.0, -1.0, 0.0); // Rotacion Indice 03
+		glTranslatef(-2.0f, -1.25f, 0.0f);
+
+		glPushMatrix(); // Indice 03
+			glColor3f(0.0f, 0.0f, 1.0f);
+				glTranslatef(2.25f, 0.75f, 0.0f);
+				glScalef(0.5f, 0.4f, 0.5f);
+				prisma();
+		glPopMatrix();
+
+	glPopMatrix(); // Fin Rotaciones Dedo Indice
+
+	glPushMatrix(); // Rotaciones Medio
+
+		glTranslatef(1.0f, 0.25f, 0.0f);
+		glRotatef(anguloDedos, 0.0, -1.0, 0.0); // Rotacion Medio 01
+		glTranslatef(-1.0f, -0.25f, 0.0f);
+
+		glPushMatrix(); // Medio 01
+			glColor3f(1.0f, 0.0f, 0.0f);
+				glTranslatef(1.25f, 0.25f, 0.0f);
+				glScalef(0.5f, 0.4f, 0.5f);
+				prisma();
+		glPopMatrix();
+
+		glTranslatef(1.5f, 0.25f, 0.0f);
+		glRotatef(anguloDedos - anguloDedos * 0.5, 0.0, -1.0, 0.0); // Rotacion Medio 02
+		glTranslatef(-1.5f, -0.25f, 0.0f);
+
+		glPushMatrix(); // Medio 02
+			glColor3f(0.0f, 1.0f, 0.0f);
+				glTranslatef(1.75f, 0.25f, 0.0f);
+				glScalef(0.5f, 0.4f, 0.5f);
+				prisma();
+		glPopMatrix();
+
+		glTranslatef(2.0f, 0.25f, 0.0f);
+		glRotatef(anguloDedos - anguloDedos * 0.75, 0.0, -1.0, 0.0); // Rotacion Medio 03
+		glTranslatef(-2.0f, -0.25f, 0.0f);
+
+		glPushMatrix(); // Medio 03
+			glColor3f(0.0f, 0.0f, 1.0f);
+				glTranslatef(2.25f, 0.25f, 0.0f);
+				glScalef(0.5f, 0.4f, 0.5f);
+				prisma();
+		glPopMatrix();
+	
+	glPopMatrix(); // Fin Rotaciones Medio
+
+	glPushMatrix(); // Rotaciones Anular
+
+		glTranslatef(1.0f, -0.25f, 0.0f);
+		glRotatef(anguloDedos, 0.0, -1.0, 0.0); // Rotacion Anular 01
+		glTranslatef(-1.0f, 0.25f, 0.0f);
+
 		glPushMatrix(); // Anular 01
 			glColor3f(1.0f, 0.0f, 0.0f);
 				glTranslatef(1.25f, -0.25f, 0.0f);
 				glScalef(0.5f, 0.4f, 0.5f);
 				prisma();
 		glPopMatrix();
-		glRotatef(anguloAnular, 0.0f, 1.0f, 0.0f);
+
+		glTranslatef(1.5f, -0.25f, 0.0f);
+		glRotatef(anguloDedos - anguloDedos * 0.5, 0.0, -1.0, 0.0); // Rotacion Anular 02
+		glTranslatef(-1.5f, 0.25f, 0.0f);
+
 		glPushMatrix(); // Anular 02
 			glColor3f(0.0f, 1.0f, 0.0f);
 				glTranslatef(1.75f, -0.25f, 0.0f);
 				glScalef(0.5f, 0.4f, 0.5f);
 				prisma();
 		glPopMatrix();
-		glRotatef(anguloAnular, 0.0f, 1.0f, 0.0f);
+
+		glTranslatef(2.0f, -0.25f, 0.0f);
+		glRotatef(anguloDedos - anguloDedos * 0.75, 0.0, -1.0, 0.0); // Rotacion Anular 03
+		glTranslatef(-2.0f, 0.25f, 0.0f);
+
 		glPushMatrix(); // Anular 03
 			glColor3f(0.0f, 0.0f, 1.0f);
 				glTranslatef(2.25f, -0.25f, 0.0f);
 				glScalef(0.5f, 0.4f, 0.5f);
 				prisma();
 		glPopMatrix();
-	glPopMatrix();
 
-	glPushMatrix(); // Meñique 01
-		glColor3f(1.0f, 0.0f, 0.0f);
-			glTranslatef(1.25f, -0.75f, 0.0f);
-			glScalef(0.5f, 0.4f, 0.5f);
-			prisma();
-	glPopMatrix();
+	glPopMatrix(); // Fin Rotaciones Anular
+	
+	glPushMatrix(); // Rotaciones Meñique
 
-	glPushMatrix(); // Meñique 02
-		glColor3f(0.0f, 1.0f, 0.0f);
-			glTranslatef(1.65f, -0.75f, 0.0f);
-			glScalef(0.3f, 0.4f, 0.5f);
-			prisma();
-	glPopMatrix();
+		glTranslatef(1.0f, -0.75f, 0.0f);
+		glRotatef(anguloDedos, 0.0, -1.0, 0.0); // Rotacion Meñique 01
+		glTranslatef(-1.0f, 0.75f, 0.0f);
 
-	glPushMatrix(); // Meñique 03
-		glColor3f(0.0f, 0.0f, 1.0f);
-			glTranslatef(1.9f, -0.75f, 0.0f);
-			glScalef(0.2f, 0.4f, 0.5f);
-			prisma();
-	glPopMatrix();
+		glPushMatrix(); // Meñique 01
+			glColor3f(1.0f, 0.0f, 0.0f);
+				glTranslatef(1.25f, -0.75f, 0.0f);
+				glScalef(0.5f, 0.4f, 0.5f);
+				prisma();
+		glPopMatrix();
 
-						
+		glTranslatef(1.5f, -0.75f, 0.0f);
+		glRotatef(anguloDedos - anguloDedos * 0.5, 0.0, -1.0, 0.0); // Rotacion Meñique 02
+		glTranslatef(-1.5f, 0.75f, 0.0f);
+
+		glPushMatrix(); // Meñique 02
+			glColor3f(0.0f, 1.0f, 0.0f);
+				glTranslatef(1.65f, -0.75f, 0.0f);
+				glScalef(0.3f, 0.4f, 0.5f);
+				prisma();
+		glPopMatrix();
+
+		glTranslatef(1.8f, -0.75f, 0.0f);
+		glRotatef(anguloDedos - anguloDedos * 0.75, 0.0, -1.0, 0.0); // Rotacion Meñique 03
+		glTranslatef(-1.8f, 0.75f, 0.0f);
+
+		glPushMatrix(); // Meñique 03
+			glColor3f(0.0f, 0.0f, 1.0f);
+				glTranslatef(1.9f, -0.75f, 0.0f);
+				glScalef(0.2f, 0.4f, 0.5f);
+				prisma();
+		glPopMatrix(); 
+
+	glPopMatrix(); // Fin Rotaciones Meñique
+							
 	glutSwapBuffers ( );
-  // Swap The Buffers
 }
 
 void reshape ( int width , int height )   // Creamos funcion Reshape
@@ -299,7 +394,7 @@ void reshape ( int width , int height )   // Creamos funcion Reshape
 
 	// Tipo de Vista
 	//glOrtho(-20,20,-20,20,0.2,20);	
-	glFrustum (-1.0, 1.0,-1.0, 1.0, 0.1, 500.0);
+	glFrustum (-0.1, 0.1,-0.1, 0.1, 0.1, 50.0);
 
 	glMatrixMode(GL_MODELVIEW);							// Seleccionamos Modelview Matrix
 	//glLoadIdentity();									
@@ -325,28 +420,44 @@ void keyboard ( unsigned char key, int x, int y )  // Create Keyboard Function
 			transX -=0.2f;
 			break;
 		case 'j':
+		case 'J':
 			if(anguloHombro <= 80.0)
 				anguloHombro += 1.0;
 			break;
-		case 'J':
+		case 'h':
+		case 'H':
 			if (anguloHombro >= -80.0)
 				anguloHombro -= 1.0;
 			break;
 		case 'k':
-			if (anguloAnular <= 80.0)
-				anguloAnular += 1.0;
-			break;
 		case 'K':
-			if (anguloAnular >= -80.0)
-				anguloAnular -= 1.0;
+			if (anguloMuneca >= -45.0)
+				anguloMuneca -= 1.0;
 			break;
-		case 'i':
+		case 'l':
+		case 'L':
+			if (anguloMuneca <= 45.0)
+				anguloMuneca += 1.0;
+			break;
+		case 'u':
+		case 'U':
 			if (anguloCodo <= 80.0)
 				anguloCodo += 1.0;
 			break;
-		case 'I':
-			if (anguloCodo >= -80.0)
+		case 'y':
+		case 'Y':
+			if (anguloCodo >= 0.0)
 				anguloCodo -= 1.0;
+			break;
+		case 'i':
+		case 'I':
+			if (anguloDedos <= 90.0)
+				anguloDedos += 1.0;
+			break;
+		case 'o':
+		case 'O':
+			if (anguloDedos >= 0.0)
+				anguloDedos -= 1.0;
 			break;
 		case 27:        // Cuando Esc es presionado...
 			exit ( 0 );   // Salimos del programa

@@ -1,2 +1,3 @@
-﻿  mainPractica05.cpp
+﻿  mainPractica06.cpp
+c:\users\jepf_\documents\githubrepositories\jepf_clase\claselabcompgraf\claselabcompgraf\mainpractica06.cpp(49): warning C4838: la conversión de 'double' en 'GLfloat' requiere una conversión de restricción
   claseLabCompGraf.vcxproj -> C:\Users\jepf_\Documents\GitHubRepositories\JEPF_Clase\claseLabCompGraf\Debug\claseLabCompGraf.exe

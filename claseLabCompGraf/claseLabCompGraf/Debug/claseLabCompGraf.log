@@ -1,3 +1,9 @@
 ﻿  mainPractica06.cpp
-c:\users\jepf_\documents\githubrepositories\jepf_clase\claselabcompgraf\claselabcompgraf\mainpractica06.cpp(49): warning C4838: la conversión de 'double' en 'GLfloat' requiere una conversión de restricción
-  claseLabCompGraf.vcxproj -> C:\Users\jepf_\Documents\GitHubRepositories\JEPF_Clase\claseLabCompGraf\Debug\claseLabCompGraf.exe
+c:\users\cg09\documents\github\jepf_clase\claselabcompgraf\claselabcompgraf\mainpractica06.cpp(53): warning C4838: la conversión de 'double' en 'GLfloat' requiere una conversión de restricción
+c:\users\cg09\documents\github\jepf_clase\claselabcompgraf\claselabcompgraf\mainpractica06.cpp(57): warning C4838: la conversión de 'double' en 'GLfloat' requiere una conversión de restricción
+c:\users\cg09\documents\github\jepf_clase\claselabcompgraf\claselabcompgraf\mainpractica06.cpp(61): warning C4838: la conversión de 'double' en 'GLfloat' requiere una conversión de restricción
+c:\users\cg09\documents\github\jepf_clase\claselabcompgraf\claselabcompgraf\mainpractica06.cpp(69): warning C4838: la conversión de 'double' en 'GLfloat' requiere una conversión de restricción
+c:\users\cg09\documents\github\jepf_clase\claselabcompgraf\claselabcompgraf\mainpractica06.cpp(73): warning C4838: la conversión de 'double' en 'GLfloat' requiere una conversión de restricción
+c:\users\cg09\documents\github\jepf_clase\claselabcompgraf\claselabcompgraf\mainpractica06.cpp(81): warning C4838: la conversión de 'double' en 'GLfloat' requiere una conversión de restricción
+c:\users\cg09\documents\github\jepf_clase\claselabcompgraf\claselabcompgraf\mainpractica06.cpp(85): warning C4838: la conversión de 'double' en 'GLfloat' requiere una conversión de restricción
+  claseLabCompGraf.vcxproj -> C:\Users\CG09\Documents\GitHub\JEPF_Clase\claseLabCompGraf\Debug\claseLabCompGraf.exe

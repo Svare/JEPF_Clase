@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="figuras.cpp" />
-    <ClCompile Include="mainPratica09.cpp" />
+    <ClCompile Include="mainPractica08.1.cpp" />
     <ClCompile Include="texture.cpp" />
   </ItemGroup>
   <ItemGroup>

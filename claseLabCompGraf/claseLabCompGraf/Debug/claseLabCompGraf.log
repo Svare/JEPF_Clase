@@ -1,2 +1,3 @@
-﻿  mainPractica08.1.cpp
-  claseLabCompGraf.vcxproj -> C:\Users\jepf_\Documents\GitHubRepositories\JEPF_Clase\claseLabCompGraf\Debug\claseLabCompGraf.exe
+﻿  mainPractica10.cpp
+CModel.lib(CModel.obj) : error LNK2019: símbolo externo _sprintf sin resolver al que se hace referencia en la función "public: bool __thiscall CModel::GFILoadObject(char *)" (?GFILoadObject@CModel@@QAE_NPAD@Z)
+C:\Users\CG09\Documents\GitHub\JEPF_Clase\claseLabCompGraf\Debug\claseLabCompGraf.exe : fatal error LNK1120: 1 externos sin resolver

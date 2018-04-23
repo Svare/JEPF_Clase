@@ -24,7 +24,7 @@
     <ClCompile Include="figuras.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="mainPractica08.1.cpp">
+    <ClCompile Include="mainPractica10.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
